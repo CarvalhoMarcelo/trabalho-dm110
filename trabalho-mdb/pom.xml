@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>Trabalho de DM 110 - MDB</name>
+	<description>MDB project of DM 110</description>
+	<properties></properties>
+	<parent>
+		<groupId>br.inatel.dm110</groupId>
+		<artifactId>trabalho-parent</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<groupId>br.inatel.dm110</groupId>
+	<artifactId>trabalho-mdb</artifactId>
+	<packaging>ejb</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<ejbVersion>3.0</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>br.inatel.dm110</groupId>
+			<artifactId>trabalho-api</artifactId>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.inatel.dm110</groupId>
+			<artifactId>trabalho-ejb</artifactId>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+
+    </dependencies>
+</project>
