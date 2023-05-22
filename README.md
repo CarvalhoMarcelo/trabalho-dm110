@@ -11,36 +11,12 @@
 - IntelliJ IDEA Communit Edition 2022.1.3 (optional)
 - HyperSQL - HSQLDB 2.7.1 (mandatory) - http://hsqldb.org
 - Java 11.0.17 (recommended) - https://www.oracle.com/java/technologies/downloads/#java11
-- WildFly 24.0.0 Final (mandatory) - https://www.wildfly.org/downloads
+- WildFly 24.0.0 Final (mandatory) - https://github.com/wildfly/wildfly/releases/download/27.0.1.Final/wildfly-27.0.1.Final.zip
 - Postman 10.13.6 (optional) - https://www.getpostman.com
 - Maven 3.8.1 (recommended) - https://maven.apache.org/download.cgi
 
 ---
 
-**Payload:**
-
-In the folder `docs_and_folder` there is a file `DM110.postman_collection.json` that you can use to import to your preferred API platform or tool (I've used Postman for this project), so you will have all the endpoints ready and configured to use and test the APIs.
-
----
-
-**Endpoints:**
-
-If you decide to not import the Postman configured collection that I have exported, below are the endpoints to be used to test the API.
-
-```
---- PRODUCT ---
-(POST)   http://localhost:8080/trabalho-web/api/product             (create product)
-(PUT)    http://localhost:8080/trabalho-web/api/product/code/10     (update product)
-(DELETE) http://localhost:8080/trabalho-web/api/product/code/8      (delete product by id)
-(GET)    http://localhost:8080/trabalho-web/api/products            (get all products)
-(GET)    http://localhost:8080/trabalho-web/api/product/code/10     (get product by id)
-(GET)    http://localhost:8080/trabalho-web/api/product/name/Laptop (get product by name)
-
---- AUDITING ---
-(GET) http://localhost:8080/trabalho-web/api/auditing                (get all auditing)
-(GET) http://localhost:8080/trabalho-web/api/auditing/productCode/10 (get auditing by product code)
-```
----
 **Install mandatories technologies**
 
 1. Download and unpack/unzip the WildFly, HyperSLQ(HSQLDB), and Maven into single folders to avoid path problems.
@@ -68,7 +44,8 @@ If you decide to not import the Postman configured collection that I have export
      - URL: jdbc:hsqldb:file:C:\dm110\product.db (change for the correct path that you want to use)
      - User: dm110 (You must use exactly this one unless you know what you are doing and how to change it in the next commands below)
      - Password: senhadm110 (same comment as above)
-- In the available command blank area, type/copy the below script to create the mandatory tables:
+- In the available command blank area, type/copy the below script to create the mandatory tables and click on `ExecuteSQL` button:
+  - Obs: The below scripts are inside the folder `docs` in your cloned project folder.
 ```
 CREATE TABLE PRODUCT (
 CODE INTEGER NOT NULL,
@@ -95,11 +72,43 @@ PRIMARY KEY (IDENTIFIER)
 - Obs2.: Be careful on copy and pasting. Some prompts or terminals can behavior different. Be sure that you type things correctly.
 4. Open a terminal or command prompt at the folder where you unpack/unzip the WildFly, go to the `/bin` folder, and type:  
    - `./standalone.sh -c=standalone-full.xml` or `standalone.bat -c=standalone-full.xml` 
-5. Open another terminal or command prompt and type the below command in the presented order after each one is completed successfully. Remember to use ".sh" or .".bat" according to your system. Also, remember to change and put the correct PATH where you install your technologies.
+5. Open another terminal or command prompt at the folder where you unpack/unzip the WildFly, and type the below commands in the presented order after each one is completed successfully. No error should be shown before you execute the next command. Remember to use ".sh" or .".bat" according to your system. Also, remember to change and put the correct PATH where you install your technologies.
 - `./jboss-cli.sh --connect --command="module add --name=br.inatel.dm110.org.hsqldb --dependencies=javax.transaction.api --export-dependencies=javax.api --resources=C:\dm110\hsqldb\lib\hsqldb.jar"` (chage to the correct path where you put your HSQLDB)
-- `./jboss-cli.sh --connect --command="/subsystem=datasources/jdbcdriver=HSQLDBDriver:add(driver-name=HSQLDBDriver,driver-modulename=br.inatel.dm110.org.hsqldb,driver-classname=org.hsqldb.jdbc.JDBCDriver)"`
-- `./jboss-cli.sh --connect --command="data-source add --jndi-name=java:/ProductDS --name=ProductDS --connection-url=jdbc:hsqldb:file:C:\dm110\product.db --drivername=HSQLDBDriver --password=senhadm110 --user-name=dm110"` (change to the correct path where you put your product.db)
-- `./jboss-cli.sh --connect --command="deploy --force C:\dm110\trabalho-dm110\trabalho-ear\target\trabalho-ear-1.0.ear"` (change to the correct path where you clone the repository. Check if the EAR file is into the `/target` folder)
-- `./jboss-cli.sh --connect --command="jms-queue add --queue-address=ProductQueue --durable=true --entries=[java:/jms/queue/ProductQueue]"`
+- `./jboss-cli.sh --connect --command="/subsystem=datasources/jdbc-driver=HSQLDBDriver:add(driver-name=HSQLDBDriver,driver-module-name=br.inatel.dm110.org.hsqldb,driver-class-name=org.hsqldb.jdbc.JDBCDriver)"`
+- `./jboss-cli.sh --connect --command="data-source add --jndi-name=java:/ProductDS --name=ProductDS --connection-url=jdbc:hsqldb:file:C:\dm110\product.db --driver-name=HSQLDBDriver --password=senhadm110 --user-name=dm110"` (change to the correct path where you put your product.db)
+- `./jboss-cli.sh --connect --command="jms-queue add --queue-address=ProductQueue --durable=true --entries=[java:/jms/queue/ProductQueue]"` 
+- `./jboss-cli.sh --connect --command="deploy --force C:\dm110\trabalho-dm110\trabalho-ear\target\trabalho-ear-1.0.ear"` (change to the correct path where you clone the repository. Check if the EAR file is into the `\trabalho-ear\target` folder)
+
 6. Use an API Client like Postman to perform the tasks and call the provided endpoints. 
 
+---
+
+**Payload:**
+
+In the folder `docs_and_folder` there is a file `DM110.postman_collection.json` that you can use to import to your preferred API platform or tool (I've used Postman for this project), so you will have all the endpoints ready and configured to use and test the APIs.
+
+---
+
+**Endpoints:**
+
+If you decide to not import the Postman configured collection that I have exported, below are the endpoints to be used to test the API.
+
+```
+--- PRODUCT ---
+(POST)   http://localhost:8080/trabalho-web/api/product             (create product)
+(PUT)    http://localhost:8080/trabalho-web/api/product/code/1      (update product)
+(DELETE) http://localhost:8080/trabalho-web/api/product/code/1      (delete product by id)
+(GET)    http://localhost:8080/trabalho-web/api/products            (get all products)
+(GET)    http://localhost:8080/trabalho-web/api/product/code/1      (get product by id)
+(GET)    http://localhost:8080/trabalho-web/api/product/name/Laptop (get product by name)
+
+--- AUDITING ---
+(GET) http://localhost:8080/trabalho-web/api/auditing               (get all auditing)
+(GET) http://localhost:8080/trabalho-web/api/auditing/productCode/1 (get auditing by product code)
+```
+
+---
+
+**Docs:**
+In the folder `docs_and_files` you will find a simple UML showing the program flow.
+---
