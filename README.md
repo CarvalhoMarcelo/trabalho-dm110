@@ -8,12 +8,12 @@
 
 **Technologies:**
 
-- IntelliJ IDEA Communit Edition 2022.1.3
-- HyperSQL - HSQLDB 2.7.1 (mandatory)
-- Java 11.0.17 (recommended)
-- WildFly 24.0.0 Final (mandatory)
-- Postman 10.13.6
-- Maven 3.8.1
+- IntelliJ IDEA Communit Edition 2022.1.3 (optional)
+- HyperSQL - HSQLDB 2.7.1 (mandatory) - http://hsqldb.org
+- Java 11.0.17 (recommended) - https://www.oracle.com/java/technologies/downloads/#java11
+- WildFly 24.0.0 Final (mandatory) - https://www.wildfly.org/downloads
+- Postman 10.13.6 (optional) - https://www.getpostman.com
+- Maven 3.8.1 (recommended) - https://maven.apache.org/download.cgi
 
 ---
 
