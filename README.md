@@ -85,7 +85,7 @@ PRIMARY KEY (IDENTIFIER)
 
 **Payload:**
 
-In the folder `docs_and_folder` there is a file `DM110.postman_collection.json` that you can use to import to your preferred API platform or tool (I've used Postman for this project), so you will have all the endpoints ready and configured to use and test the APIs.
+In the folder `docs` there is a file `DM110.postman_collection.json` that you can use to import to your preferred API platform or tool (I've used Postman for this project), so you will have all the endpoints ready and configured to use and test the APIs.
 
 ---
 
@@ -109,14 +109,8 @@ If you decide to not import the Postman configured collection that I have export
 
 ---
 
-**Docs:**
-
-In the folder `docs_and_files` you will find a simple UML showing the program flow.
-
----
-
 **Diagram**
 
-The PDF version of this diagram is in folder `docs_and_files`.
+The PDF version of this diagram is in the folder `docs`.
 
-![alt text](https://github.com/CarvalhoMarcelo/trabalho-dm110/blob/master/docs_and_files/diagrama_dm110.png)
+![alt text](https://github.com/CarvalhoMarcelo/trabalho-dm110/blob/master/docs/diagrama_dm110.png)
