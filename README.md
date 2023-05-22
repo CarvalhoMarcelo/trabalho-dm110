@@ -72,7 +72,7 @@ PRIMARY KEY (IDENTIFIER)
 - Obs2.: Be careful on copy and pasting. Some prompts or terminals can behavior different. Be sure that you type things correctly.
 4. Open a terminal or command prompt at the folder where you unpack/unzip the WildFly, go to the `/bin` folder, and type:  
    - `./standalone.sh -c=standalone-full.xml` or `standalone.bat -c=standalone-full.xml` 
-5. Open another terminal or command prompt at the folder where you unpack/unzip the WildFly, and type the below commands in the presented order after each one is completed successfully. No error should be shown before you execute the next command. Remember to use ".sh" or .".bat" according to your system. Also, remember to change and put the correct PATH where you install your technologies.
+5. Open another terminal or command prompt at the folder where you unpack/unzip the WildFly, go to the `/bin` folder, and type the below commands in the presented order after each one is completed successfully. No error should be shown before you execute the next command. Remember to use ".sh" or .".bat" according to your system. Also, remember to change and put the correct PATH where you install your technologies.
 - `./jboss-cli.sh --connect --command="module add --name=br.inatel.dm110.org.hsqldb --dependencies=javax.transaction.api --export-dependencies=javax.api --resources=C:\dm110\hsqldb\lib\hsqldb.jar"` (chage to the correct path where you put your HSQLDB)
 - `./jboss-cli.sh --connect --command="/subsystem=datasources/jdbc-driver=HSQLDBDriver:add(driver-name=HSQLDBDriver,driver-module-name=br.inatel.dm110.org.hsqldb,driver-class-name=org.hsqldb.jdbc.JDBCDriver)"`
 - `./jboss-cli.sh --connect --command="data-source add --jndi-name=java:/ProductDS --name=ProductDS --connection-url=jdbc:hsqldb:file:C:\dm110\product.db --driver-name=HSQLDBDriver --password=senhadm110 --user-name=dm110"` (change to the correct path where you put your product.db)
@@ -110,5 +110,5 @@ If you decide to not import the Postman configured collection that I have export
 ---
 
 **Docs:**
+
 In the folder `docs_and_files` you will find a simple UML showing the program flow.
----
