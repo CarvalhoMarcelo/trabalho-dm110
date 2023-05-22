@@ -24,17 +24,10 @@ public class ProductEJBClient {
 			String result = statelessProduct.toString();
 			System.out.println("Result of stateless call: " + result);
 
-/*
-			ProductTO newProduct = new ProductTO();
-			newProduct.setCode();
-			newProduct.setName();
-			newProduct.setDescription();
-			newProduct.setCategory();
-			newProduct.setPrice();
+			ProductTO product0TO = fillProduct("Laptop0", "Last generation new laptop0", "Technology", 5000.99);
 
-			int id = statelessProduct.createProduct(newProduct);
-			System.out.println("Product id: " + id);
-*/
+			statelessProduct.createProduct(product0TO);
+			System.out.println("Product id: " + product0TO.getCode());
 
 			List<ProductTO> resp = statelessProduct.listAllProducts();
 			System.out.println("\n\nProducts: \n" + resp);
@@ -65,5 +58,17 @@ public class ProductEJBClient {
 		jndiProperties.put(Context.PROVIDER_URL, "remote+http://localhost:8080");
 		return new InitialContext(jndiProperties);
 	}
+
+	private static ProductTO fillProduct(String  name, String description, String category, Double price){
+		ProductTO productTO = new ProductTO();
+		productTO.setName(name);
+		productTO.setDescription(description);
+		productTO.setCategory(category);
+		productTO.setPrice(price);
+
+		return productTO;
+	}
+
+
 
 }

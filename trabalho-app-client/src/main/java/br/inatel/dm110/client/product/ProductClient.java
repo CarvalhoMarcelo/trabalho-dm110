@@ -20,44 +20,35 @@ public class ProductClient {
 	public static void main(String[] args) {
 		System.out.println("Product service:");
 		
-		ProductTO productTO = new ProductTO();
-		productTO.setCode(1);
-		productTO.setName("Laptop");
-		productTO.setDescription("Last generation new laptop");
-		productTO.setCategory("Technology");
-		productTO.setPrice(5000.99);
-
-		System.out.println("Result from POST: " + createProduct(productTO));
+		ProductTO product0TO = fillProduct("Laptop0", "Last generation new laptop0", "Technology", 5000.99);
+		ProductTO product1TO = fillProduct("Laptop1", "Last generation new laptop1", "Technology", 5001.99);
+		ProductTO product2TO = fillProduct("Laptop2", "Last generation new laptop2", "Technology", 5002.99);
+		System.out.println("Result from POST1: " + createProduct(product0TO));
+		System.out.println("Result from POST2: " + createProduct(product1TO));
+		System.out.println("Result from POST3: " + createProduct(product2TO));
 
 		System.out.println("Result from GET 0 by id: " + getProductById(0));
 		System.out.println("Result from GET 1 by id: " + getProductById(1));
 		System.out.println("Result from GET 2 by id: " + getProductById(2));
 
-		System.out.println("Result from GET 0 by name: " + getProductByNamne("Laptop"));
-		System.out.println("Result from GET 1 by name: " + getProductByNamne("Printer"));
-		System.out.println("Result from GET 2 by name: " + getProductByNamne("Desktop"));
-
 		System.out.println("Result of all product: " + getAllProducts());
 
-		System.out.println("Result from DELETE 0: " + getProductByNamne("Laptop"));
-		System.out.println("Result from DELETE 2: " + getProductByNamne("Printer"));
+		System.out.println("Result from DELETE product: " + deleteProduct(0));
 
 		System.out.println("Result of all product: " + getAllProducts());
 
 	}
 
-	public static ProductTO getProductById(Integer id) {
+	public static ProductTO getProductById(Integer index) {
 		return client
-				.target(REST_URI)
-				.path(String.valueOf(id))
+				.target(REST_URI + "/code/" + getAllProducts().get(index).getCode().toString())
 				.request(MediaType.APPLICATION_JSON)
 				.get(ProductTO.class);
 	}
 
-	public static ProductTO getProductByNamne(String name) {
+	public static ProductTO getProductByNamne(Integer index) {
 		return client
-				.target(REST_URI)
-				.path(name)
+				.target(REST_URI + "/name/" + getAllProducts().get(index).getName())
 				.request(MediaType.APPLICATION_JSON)
 				.get(ProductTO.class);
 	}
@@ -78,11 +69,23 @@ public class ProductClient {
 	      .post(Entity.entity(productTO, MediaType.APPLICATION_JSON));
 	}
 
-	public static void delteProduct(Integer id) {
-		client	.target(REST_URI)
-				.path(String.valueOf(id))
+	public static ProductTO deleteProduct(Integer index) {
+		ProductTO productTO = getAllProducts().get(index);
+		return client
+				.target(REST_URI + "/code/" + productTO.getCode())
 				.request(MediaType.APPLICATION_JSON)
 				.delete(ProductTO.class);
 	}
+
+	private static ProductTO fillProduct(String  name, String description, String category, Double price){
+		ProductTO productTO = new ProductTO();
+		productTO.setName(name);
+		productTO.setDescription(description);
+		productTO.setCategory(category);
+		productTO.setPrice(price);
+
+		return productTO;
+	}
+
 
 }
