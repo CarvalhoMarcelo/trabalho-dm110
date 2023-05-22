@@ -112,3 +112,11 @@ If you decide to not import the Postman configured collection that I have export
 **Docs:**
 
 In the folder `docs_and_files` you will find a simple UML showing the program flow.
+
+---
+
+**Diagram**
+
+The PDF version of this diagram is in folder `docs_and_files`.
+
+![alt text](https://github.com/CarvalhoMarcelo/trabalho-dm110/blob/master/docs_and_files/diagrama_dm110.png)
