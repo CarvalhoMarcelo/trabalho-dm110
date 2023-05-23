@@ -33,9 +33,9 @@
 **How to run:**
 
 1. Clone the repository into a single folder to not have path problems. Ex.: 'C:\dm110' or '/home/dm110'
-2. Go to the folder that you used to clone, for example, C:\dm110\trabalho-dm110, and type:
+2. Go to the folder that you used to clone, for example, C:\dm110\trabalho-dm110, open a terminal or command prompt on it, and type:
    - `mvn clean install`
-3. Go to the folder that you used to unpack/unzip the HyperSLQ(HSQLDB), go to the `/lib` folder, and type the command below:
+3. Go to the folder that you used to unpack/unzip the HyperSLQ(HSQLDB), open a command prompt or terminal on it, go to the `/lib` folder, and type the command below:
    - `java -jar hsqldb.jar` 
    - When the HyperSQL IDE pops up, use the below configuration:
      - Setting Name: "DM110"
@@ -45,7 +45,7 @@
      - User: dm110 (You must use exactly this one unless you know what you are doing and how to change it in the next commands below)
      - Password: senhadm110 (same comment as above)
 - In the available command blank area, type/copy the below script to create the mandatory tables and click on `ExecuteSQL` button:
-  - Obs: The below scripts are inside the folder `docs` in your cloned project folder.
+  - Obs: The below scripts are also available inside the folder `docs` in your cloned project folder.
 ```
 CREATE TABLE PRODUCT (
 CODE INTEGER NOT NULL,
@@ -66,7 +66,7 @@ DATETIME TIMESTAMP NOT NULL,
 PRIMARY KEY (IDENTIFIER)
 );
 ```
-*** After the two commands ran successfully, you can close the HyperSQL IDE.
+*** After the two scripts ran successfully, you can close the HyperSQL IDE.
 
 - Obs1.: For the next commands below, for bash terminals use `.sh` files, and for windows command prompt use `.bat` files
 - Obs2.: Be careful on copy and pasting. Some prompts or terminals can behavior different. Be sure that you type things correctly.
@@ -111,6 +111,6 @@ If you decide to not import the Postman configured collection that I have export
 
 **Diagram**
 
-The PDF version of this diagram is in the folder `docs`.
+The PDF version of this diagram is available in the folder `docs` of the cloned repository.
 
 ![alt text](https://github.com/CarvalhoMarcelo/trabalho-dm110/blob/master/docs/diagrama_dm110.png)
